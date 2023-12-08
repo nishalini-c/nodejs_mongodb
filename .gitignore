@@ -1,2 +1,8 @@
-.env 
+.env  
 node_modules
+
+# The "node_modules" directory is created by npm (Node Package Manager) when you install dependencies for your Node.js project. It contains all the third-party packages (or modules) that your project depends on. Each 
+# package has its own subdirectory within "node_modules," and the entire directory is usually quite large.
+
+# .env=> The ".env" file is often used to store configuration settings, such as API keys, database connection strings, and other environment-specific variables. It's a plain text file where each line represents a key-value pair in the format KEY=VALUE.
+#  This file is not committed to version control systems (like Git) to keep sensitive information secure.

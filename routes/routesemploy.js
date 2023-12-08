@@ -1,28 +1,27 @@
-const express = require('express');// this line import the express framework.
-//It simplifies the process of building web applications and APIs 
-//by providing a set of features and tools.
-const Model = require('./model/model');//It is a built-in function in Node.js used to include external modules 
-//(files or packages) into your program
+const express = require('express') //This line imports the Express.js module and assigns it to the variable express. In Node.js, the require function is used to include external modules.
+const employ = require('./model/employ model');//It is a built-in function in Node.js used to include external modules 
+//(files or packages) into my program
 
 const router = express.Router() //import the express and Create a new router instance using Express.
 module.exports = router;//instance so that any file that imports this module will have access to the defined routes and middleware on that router.
 
 //Post Method
 router.post('/post', async (req, res) => {
-        // Request body is expected to contain 'name' and 'age' properties
-    const data = new Model({
+    const data = new employ({
         name: req.body.name,
-        age: req.body.age
+        age: req.body.age,
+        email: req.body.email,
+        phoneNumber:req.body.phoneNumber,
+        address:req.body.address,
+        dateOfBirth:req.body.dateOfBirth,
+        salary:req.body.salary
     })
 
     try {
-        //save the data to datbase 
         const dataToSave = await data.save();
-        // Respond with a JSON object containing the saved data
         res.status(200).json(dataToSave)
     }
     catch (error) {
- // If an error occurs during the save operation, respond with an error message
         res.status(400).json({message: error.message})
     }
 })
@@ -39,11 +38,7 @@ router.get('/getAll', async (req, res) => {
     res.status(500).json({message: error.message})
     }
 })
-
-
-// //Get by ID Method
-      // router.get('/getOne/:id', (req, res) => {
-      //     res.send('Get by ID API')
+//Get by ID Method
 // Retrieve a single data record from the database using the provided ID
 
 router.get('/getOne/:id', async (req, res) => {
@@ -91,10 +86,3 @@ router.delete('/delete/:id', async (req, res) => { //This sets up a route handle
     } //This block is a try-catch statement. It is used to handle asynchronous operations, and in this case, 
     //it is trying to delete a document in the database based on the provided ID.
 })
-//Get by ID Method
-router.get('/getOne/:id', (req, res) => { //This sets up a route handler for HTTP GET requests to the '/getOne/:id' endpoint. The ':id' in the route path is a URL parameter, and it can be accessed using req.
-    //params.id in the callback function.
-    res.send(req.params.id)   // Send the value of the 'id' parameter in the URL as the response
-
-})
-
